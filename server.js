@@ -14,6 +14,14 @@ Storage.prototype.add = function(name) {
     return item;
 };
 
+Storage.prototype.delete = function(id) {
+    for (var itemId in this.items){
+      if (id === this.items[itemId].id){
+        this.items.splice(id, 1);
+      }
+    }
+};
+
 var storage = new Storage();
 storage.add('Broad beans');
 storage.add('Tomatoes');
@@ -34,5 +42,7 @@ app.post('/items', jsonParser, function(request, response) {
 	var item = storage.add(request.body.name);
 	response.status(201).json(item);
 });
+
+app.delete('/items/:id', function(request, response) {});
 
 app.listen(8080);
