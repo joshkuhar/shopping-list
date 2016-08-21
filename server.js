@@ -22,6 +22,13 @@ Storage.prototype.delete = function(id) {
     }
 };
 
+Storage.prototype.edit = function(name, id) {
+    var item = {name: name, id: id};
+    this.delete(id);
+    this.items.push(item);
+    return item;
+};
+
 var storage = new Storage();
 storage.add('Broad beans');
 storage.add('Tomatoes');
@@ -47,7 +54,6 @@ app.delete('/items/:id', function(request, response) {
     storage.delete(request.params.id);
     response.json(storage.items);
     console.log(storage.items);
-
 });
 
 app.listen(8080);
