@@ -45,7 +45,6 @@ app.post('/items', jsonParser, function(request, response) {
 
 app.delete('/items/:id', function(request, response) {
     storage.delete(request.params.id);
-    console.log(request.params.id);
     console.log(storage.items);
 
 });
