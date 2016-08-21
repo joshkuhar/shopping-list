@@ -45,7 +45,6 @@ app.post('/items', jsonParser, function(request, response) {
 	if (!request.body) {
 		return response.sendStatus(400);
 	}
-
 	var item = storage.add(request.body.name);
 	response.status(201).json(item);
 });
@@ -53,6 +52,12 @@ app.post('/items', jsonParser, function(request, response) {
 app.delete('/items/:id', function(request, response) {
     storage.delete(request.params.id);
     response.json(storage.items);
+    console.log(storage.items);
+});
+
+app.put('/items/:id', function(request, response){
+    var name = storage.items[request.params.id].name;
+    storage.edit(name, request.params.id);
     console.log(storage.items);
 });
 
