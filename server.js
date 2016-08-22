@@ -23,10 +23,12 @@ Storage.prototype.delete = function(id) {
 };
 
 Storage.prototype.edit = function(name, id) {
-    var item = {name: name, id: id};
-    this.delete(id);
-    this.items.push(item);
-    return item;
+    for (var itemId in this.items){
+      if (id == this.items[itemId].id){
+        this.items[itemId].name = name;
+      }
+    }
+    return this.items[itemId];
 };
 
 var storage = new Storage();
