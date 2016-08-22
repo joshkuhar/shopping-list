@@ -17,7 +17,7 @@ Storage.prototype.add = function(name) {
 Storage.prototype.delete = function(id) {
     for (var itemId in this.items){
       if (id == this.items[itemId].id){
-        this.items.splice(id, 1);
+        this.items.splice(itemId, 1);
       }
     }
 };
@@ -47,6 +47,7 @@ app.post('/items', jsonParser, function(request, response) {
 	}
 	var item = storage.add(request.body.name);
 	response.status(201).json(item);
+    console.log(storage.items);
 });
 
 app.delete('/items/:id', function(request, response) {
