@@ -56,10 +56,8 @@ app.delete('/items/:id', function(request, response) {
 });
 
 app.put('/items/:id', jsonParser, function(request, response){
-    console.log(storage.items[request.params.id]);
-    var name = "test";
+    var name = request.body.name;
     storage.edit(name, request.params.id);
-    //var name = storage.items[request.params.id].name;
     console.log(storage.items);
 });
 
