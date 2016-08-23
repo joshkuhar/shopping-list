@@ -53,8 +53,9 @@ describe('Shopping List', function() {
         chai.request(app)
             .get('/items/:id')
             .end(function(err, res) {
-                res.should.be.json;
-                res.should.be.an('array');
+                //res.should.be.json;
+                res.should.have.an('object');
+                done();
 
         });
     });
@@ -63,6 +64,7 @@ describe('Shopping List', function() {
             .get('/items/:id')
             .end(function(err, res) {
                 res.should.be.an('array');
+                done();
             });
     });
     it('POST to an ID that exists');
