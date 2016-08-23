@@ -49,8 +49,16 @@ describe('Shopping List', function() {
                 done();
             });
     });
+    it('should delete an item on delete', function(done){
+        chai.request(app)
+            .get('/items/:id')
+            .end(function(err, res) {
+                res.should.be.json;
+                res.should.be.an('array');
+
+        });
+    });
     it('should edit an item on put');
-    it('should delete an item on delete');
     it('POST to an ID that exists');
     it('POST without body data');
     it('POST with something other than valid JSON');
