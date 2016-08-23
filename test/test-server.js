@@ -58,7 +58,13 @@ describe('Shopping List', function() {
 
         });
     });
-    it('should edit an item on put');
+    it('should edit an item on put', function(done) {
+        chai.request(app)
+            .get('/items/:id')
+            .end(function(err, res) {
+                res.should.be.an('array');
+            });
+    });
     it('POST to an ID that exists');
     it('POST without body data');
     it('POST with something other than valid JSON');
