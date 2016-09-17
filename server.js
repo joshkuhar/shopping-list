@@ -40,7 +40,8 @@ var app = express();
 app.use(express.static('public'));
 
 app.get('/items', function(request, response) {
-    response.json(storage.items);
+    //console.log(response);
+    response.status(200).json(storage.items);
 });
 
 app.post('/items', jsonParser, function(request, response) {
@@ -49,22 +50,25 @@ app.post('/items', jsonParser, function(request, response) {
 	}
 	var item = storage.add(request.body.name);
 	response.status(201).json(item);
-    console.log(storage.items);
 });
 
 app.delete('/items/:id', function(request, response) {
+    if (isNaN(parseInt(request.params.id))) {   
+        return response.status(404).send("No dice");
+    }
     storage.delete(request.params.id);
-    response.json(storage.items);
-    console.log(storage.items);
+    //console.log(response);
+    response.status(200).json(storage.items);
+    //response.json(storage.items);
 });
 
 app.put('/items/:id', jsonParser, function(request, response){
     var name = request.body.name;
     storage.edit(name, request.params.id);
-    console.log(storage.items);
+    //console.log(storage.items);
 });
-
-app.listen(process.env.PORT);
+app.listen(8080);
+//app.listen(process.env.PORT);
 
 exports.app = app;
 exports.storage = storage;
