@@ -65,7 +65,8 @@ app.delete('/items/:id', function(request, response) {
 app.put('/items/:id', jsonParser, function(request, response){
     var name = request.body.name;
     storage.edit(name, request.params.id);
-    //console.log(storage.items);
+    response.status(200).json(storage.items);
+    console.log(request.body);
 });
 app.listen(8080);
 //app.listen(process.env.PORT);

@@ -53,7 +53,20 @@ describe('Shopping List', function() {
             done();
        });
    });
-   it('should edit an item on put');
+
+   it('should edit an item on put', function(done) {
+    chai.request(app)
+    .put('/items/0')
+    .send({name: 'Foo'})
+    .end(function(err, res) {
+            res.body.should.be.a('array');
+            res.body[0].name.should.equal('Foo');
+            res.body.should.have.length(4);
+            res.should.have.status(200);
+            done();
+      });
+   });
+
    it('should delete an item on delete');
 
 });
