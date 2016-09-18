@@ -72,10 +72,9 @@ describe('Shopping List', function() {
     .delete('/items/0')
     .send({id: 0})
     .end(function(err, res) {
-      //console.log(res);
       res.should.have.status(200);
       res.should.be.a('object');
-      console.log(res);
+      res.body.should.be.a('array');
       done();
     });
    });

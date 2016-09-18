@@ -64,9 +64,7 @@ app.delete('/items/:id', function(request, response) {
     //     return response.status(404).send("No dice");
     // }
     storage.delete(request.params.id);
-    console.log(response);
     response.status(200).json(storage.items);
-    response.json(storage.items);
 });
 
 
