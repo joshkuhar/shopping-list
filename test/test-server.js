@@ -67,6 +67,17 @@ describe('Shopping List', function() {
       });
    });
 
-   it('should delete an item on delete');
+   it('should delete an item on delete', function(done) {
+    chai.request(app)
+    .delete('/items/0')
+    .send({id: 0})
+    .end(function(err, res) {
+      //console.log(res);
+      res.should.have.status(200);
+      res.should.be.a('object');
+      console.log(res);
+      done();
+    });
+   });
 
 });

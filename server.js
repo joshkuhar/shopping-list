@@ -52,22 +52,24 @@ app.post('/items', jsonParser, function(request, response) {
 	response.status(201).json(item);
 });
 
-app.delete('/items/:id', function(request, response) {
-    if (isNaN(parseInt(request.params.id))) {   
-        return response.status(404).send("No dice");
-    }
-    storage.delete(request.params.id);
-    //console.log(response);
-    response.status(200).json(storage.items);
-    //response.json(storage.items);
-});
-
 app.put('/items/:id', jsonParser, function(request, response){
     var name = request.body.name;
     storage.edit(name, request.params.id);
     response.status(200).json(storage.items);
-    console.log(request.body);
+    //console.log(request.body);
 });
+
+app.delete('/items/:id', function(request, response) {
+    // if (isNaN(parseInt(request.params.id))) {   
+    //     return response.status(404).send("No dice");
+    // }
+    storage.delete(request.params.id);
+    console.log(response);
+    response.status(200).json(storage.items);
+    response.json(storage.items);
+});
+
+
 app.listen(8080);
 //app.listen(process.env.PORT);
 
